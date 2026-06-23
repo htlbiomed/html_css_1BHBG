@@ -1,0 +1,45 @@
+/* Unser Stylesheet für unser HTL Buffet */
+
+#wrap {
+    width: 960px;
+    margin: 0 auto;
+}
+
+body {
+    background-color: rgb(26, 89, 47);
+}
+
+h1 {
+    background-color: rgb(165, 225, 147);
+    color: rgb(255, 255, 255);
+}
+
+p {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20px;
+    font-style: italic; /* ... = kursiv */
+    font-weight: bold;
+}
+
+ul {
+    border: 2px dashed rgb(116, 184, 102);
+    border-radius: 20px;
+    padding: 30px; /* Innenabastand zum Rahmen */
+    margin: 40px; /* Außenabstand */
+}
+
+figure {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    border: 2px dashed rgb(92, 129, 85);
+    border-radius: 20px;
+    padding: 5px;
+}
+
+a:hover { /* CSS Effekt */
+    transition: all 1s linear;
+    background-color: rgb(217, 255, 206);
+}
