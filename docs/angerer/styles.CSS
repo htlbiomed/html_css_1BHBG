@@ -1,0 +1,43 @@
+
+body {
+    background-color: rgb(255, 142, 242);
+}
+
+h1 {
+    background-color: rgb(234, 142, 255);
+    color: rgb(255, 40, 173);
+
+}
+
+p {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20xp;
+    font-style: italic; /*kursiv*/
+    font-weight:lighter;
+}
+ul {
+    border:2px dashed rgb(255, 0, 179);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 40px ;
+}
+
+figure{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    border: 2px dotted rgb(255, 0, 179);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+a:hover{ /*CSS effekt */
+    transition: all 1s linear;
+    background-color: rgb(232, 155, 255);
+}
+
+#wrap{
+    
+}
