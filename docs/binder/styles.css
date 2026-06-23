@@ -1,0 +1,27 @@
+/*Unser Stylesheet für unser HTL Buffet */
+
+body{
+    background-color: rgb(207, 97, 129);
+}
+h1{
+    color: rgb(155, 49, 79)
+}
+
+figure{text-align: center;
+}
+
+#wrap{
+    width: 960;
+    margin: 0 auto;
+}
+
+a {
+    text-decoration:none;
+    border: 2px dotted rgb(218, 249, 98);
+    border-radius: 5p;
+    padding:5px;
+}
+a:hover{
+    transition:all 1s linear;
+    background-color:rgb(207, 131, 179);
+}
