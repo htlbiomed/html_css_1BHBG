@@ -1,0 +1,41 @@
+#wrap {
+    width: 960px;
+     margin:0 auto;
+}
+
+body {
+    background-color: rgb(90, 161, 80);
+}
+
+h1 {
+    background-color: rgb(56, 115, 140);
+
+    color: rgb(7, 82, 150);
+}
+
+p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bold;
+}
+
+ul {
+    border: 2px dashed rgb(20, 60, 200);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 40px;
+}
+
+figure {
+text-align: center;
+}
+a {
+text-decoration:none;
+border: 3px dotted rgb(188, 97, 37);
+border-radius:5px;
+padding: 5px;}
+a:hover{
+transition: all 1,5s linear;
+background-color: rgb(80, 26, 189, 0.604);
+}
