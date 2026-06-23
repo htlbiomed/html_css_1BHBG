@@ -1,0 +1,45 @@
+/*Unser style sheet für unser htl buffett*/
+
+#wrap {
+    width: 960px;
+    margin: 0 auto;
+}
+
+body{
+    background-color: rgb(228, 229, 151);
+}
+
+h1{
+    background-color:rgb(239, 170, 215);
+    color:rgb(106, 2, 75);
+}
+
+p{
+    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    font-size:20px;
+    font-style:  italic;  /*Kursiv heisst italic*/
+    font-weight:bold;
+}
+
+ul{
+    border:6px dashed rgb(106, 2, 75);
+    border-radius: 20px;
+    padding: 30px;    /*innenabstand zum rahmen*/
+    margin: 40px; /*aussenabstand vom rahm,en weg*/
+}
+
+figure{
+    text-align: center;
+}
+
+a {
+    text-decoration: none  ;
+    border:3px dotted rgb(106, 2, 75);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+a:hover{   /* css effekt*/
+    transition: all 0,5s linear;
+    background-color: rgb(239, 170, 215);
+}
