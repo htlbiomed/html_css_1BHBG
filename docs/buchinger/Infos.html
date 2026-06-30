@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <title>Biomedizin- und Gesundheitstechnik</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/Logo_HTL.png">
+   
+</head>
+
+<body>
+    <h1>Die Abteilung Biomedizin- und Gesundheitstechnik:</h1>
+
+    <h3>Willkommen an der HTL Salzburg!</h4>
+
+    <figure>
+        <img src="images/HTL außen.jpg" alt="Hier sollte die HTL von außen angezeigt werden">
+    </figure>
+
+
+
+    <p>Wenn du dich für Medizin interessierst, jedoch auch für technische Geräte, bist du genau bei der richtigen Abteilung!</p>
+
+    <p>Die Abteilung Biomedizin- und Gesundheitstechnik befasst sich mit Technik, jedoch mit einem Schwerpunkt auf Medizin.</p>
+    <p>Hier lernst du über elektronische Geräte und wie man diese in Verbindung mit dem menschlichen Körper bringen kann.</p>
+    
+    <p>Weitere Infos findest du auf der <a link href="https://www.htl-salzburg.ac.at/startseite.html" target="_blank">Website</a></p>
+
+<hr>
+
+<h2>Biomedizin-Quiz</h2>
+
+<p id="frage">
+    Welches Organ pumpt Blut durch den Körper?
+</p>
+
+<button onclick="pruefen('herz')">Herz</button>
+<button onclick="pruefen('lunge')">Lunge</button>
+<button onclick="pruefen('leber')">Leber</button>
+
+<p id="ergebnis"></p>
+
+<script src="script.js"></script>
+
+<h2>Patient retten!</h2>
+
+<p>Klicke innerhalb von 3 Sekunden auf den Notfall-Button.</p>
+
+<button id="notfall" onclick="retten()">🚑 Notfall</button>
+
+<p id="status"></p>
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
