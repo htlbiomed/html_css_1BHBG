@@ -1,169 +1,224 @@
-/*Smooth scrolling*/
-    #wrap{
-    width: 960px;
-    margin: 0 auto; 
-}
-html {
-    scroll-behavior: smooth;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/*Whole page*/
 body {
-    /*backround gradiend(prelijevanje boje pozadine)*/
-    background: linear-gradient(to bottom,
-            rgb(244, 248, 236),
-            rgb(210, 190, 255));
-    /*Main font*/
     font-family: 'Poppins', sans-serif;
-    /*Text color*/
-    color: rgb(24, 23, 24);
-    /*Space around*/
-    margin: 30px;
-
+    background: linear-gradient(rgb(234, 246, 255),
+            rgb(216, 240, 255),
+            rgb(255, 255, 255));
+    color: rgb(50, 50, 50);
 }
 
-/*Main heading*/
+#wrap {
+    width: 960px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    padding: 50px;
+}
+
 h1 {
-    /*elegant font*/
-    font-family: 'Playfair Display', serif;
-    background-color: rgb(170, 140, 225);
-    /*Text color*/
-    color: rgb(235, 237, 228);
-    /*For the center text*/
+    /*Hero section with background image*/
     text-align: center;
-    /*Inner spacing*/
-    padding: 25px;
-    /*For rounded corners(da se zaokrive ivice)*/
-    border-radius: 25px;
-    /*Border(ivica)*/
-    border: 3px solid rgb(132, 99, 232);
-    font-size: 50px;
-    letter-spacing: 2px;
-}
-
-h2 {
-    font-family: 'Playfair Display', serif;
-    background-color: rgb(230, 220, 255);
-    /*Text color*/
-    color: rgb(101, 70, 180);
-    /*Padding(razmak izmedju iznad i ispod sadrzaja)*/
-    padding: 12px;
-    /*Decorative border*/
-    border-left: 8px solid rgb(120, 90, 210);
-    border-radius: 12px;
-    box-shadow: 3px 3px 10px rgb(96, 84, 114);
-    margin-top: 40px;
-
-}
-
-/*paragraphs*/
-p {
-    font-size: 17px;
-    /*Space between lines*/
-    line-height: 1.8;
-    /*Justifyied text*/
-    text-align: justify;
-    font-style: italic;
-    font-weight: bold;
-
-}
-
-/*first letter effect*/
-p::first-letter {
-    font-size: 24px;
-    font-weight: bold;
-    color: rgb(120, 90, 210);
-
-}
-
-/*Horizontal line*/
-hr {
-    border: 2px solid rgb(170, 140, 255);
-    margin: 35px;
-}
-
-/*Figure*/
-figure {
-    text-align: center;
-}
-
-/*Images*/
-img {
-    border: 5px solid white;
-    border-radius: 15px;
-    box-shadow: 5px 5px 15px rgb(122, 110, 153);
-    /*smooth effect*/
-    transition: 0.4s;
-}
-
-/*Captions*/
-figcaption {
-    margin-top: 8px;
-    font-style: italic;
+    font-size: 65px;
     color: rgb(90, 90, 90);
+    margin-bottom: 40px;
 }
 
-/*All lists*/
-ul,
-ol {
+.hero {
+    height: 500px;
+    background-size: cover;
+    background-image: url("images/hero.jpg");
+    background-position: center;
+    border-radius: 25px;
+    margin-bottom: 40px;
+
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 10px 25px rgb(0, 0, 0);
+    position: relative;
+}
+
+.hero-text {
+    background-color: rgba(255, 255, 255, 0.75);
+    padding: 20px;
+    border-radius: 15px;
+
+    position: absolute;
+    top: 40px;
+    left: 40px;
+
+    max-width: 600px;
+}
+
+.hero-text h2 {
+    color: rgb(0, 102, 204);
+    font-size: 30px;
+    margin-bottom: 15px;
+
+}
+
+.hero-text p {
+    font-size: 18px;
+}
+
+.hero-text a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: rgb(0, 119, 255);
+    color: rgb(255, 255, 255);
+    padding: 12px 25px;
+    border-radius: 12px;
+    transition: all 0.5s;
+}
+
+
+.hero-text a:hover {
+    background-color: rgb(0, 85, 170);
+
+}
+
+/*Card layout used for contect sections*/
+.card {
     background-color: rgb(255, 255, 255);
-    border: 2px dashed rgb(170, 140, 225);
-    border-radius: 20px;
-    padding: 25px;
-    box-shadow: 3px 3px 10px rgb(100, 100, 100);
+    padding: 20px;
+    margin-bottom: 35px;
+    border-radius: 25px;
+    box-shadow: 0px 8px 20px rgb(0, 0, 0);
+    transition: 0.5s;
 }
 
-/*List items*/
+.card h2 {
+    color: rgb(0, 102, 204);
+    margin-bottom: 20px;
+}
+
+.card p {
+    font-size: 18px;
+}
+
+ol {
+    margin-left: 30px;
+    font-size: 15px;
+}
+
 li {
     margin-bottom: 10px;
+    font-size: 18px;
 }
 
-/*Links*/
-/*Makes links look like buttons*/
-a {
+/*section for images*/
+.gallery {
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    padding: 35px;
+    margin-bottom: 25px;
+}
+
+.gallery h2 {
+    color: rgb(0, 102, 204);
+    margin-bottom: 25px;
+}
+
+figure {
     display: inline-block;
-    background-color: rgb(170, 140, 225);
-    color: rgb(255, 255, 255);
-    /*Makes the text bold(podebljava)*/
-    font-weight: bold;
-    /*inner spacing*/
-    padding: 12px 20px;
-    border-radius: 15px;
-    /*Space above(razmak iznad)*/
+    margin: 15px;
+}
+
+.gallery img {
+    width: 280px;
+    height: 200px;
+    border-radius: 20px;
+}
+
+figcaption {
     margin-top: 10px;
-    margin-bottom: 20px;
-    text-decoration:none;
-    border:3px dotted rgb(101, 70, 180);
+    font-weight: bold;
+    color: rgb(70, 70, 70);
 }
 
-/* Link hover effect (efekat kada pređemo mišem preko linka) */
-a:hover {
-  background-color: rgb(170, 140, 225);
-    transition: all 1s linear;
-}
-
-/*Tabela*/
 table {
+    width: 100%;
     border-collapse: collapse;
-    background-color: rgb(238, 238, 238);
-    box-shadow: 5px 5px 15px rgb(100, 100, 100);
     margin-top: 20px;
 }
 
-/*Table heather(zaglavlje tabele)*/
-th {
-    background-color: rgb(170, 140, 246);
-    color: rgb(255, 255, 255);
-    padding: 12px;
-}
-
-/*Table cells*/
 td {
-    padding: 10px;
-
+    border: 1px solid rgb(220, 220, 220);
+    padding: 15px;
+    text-align: center;
 }
 
-/* Row hover effect (efekat kada pređemo mišem preko reda) */
+th {
+    background-color: rgb(220, 220, 220);
+    padding: 15px;
+    text-align: center;
+}
+
 tr:hover {
-    background-color: rgb(170, 140, 225);
+    background-color: rgb(217, 238, 255);
+}
+
+/*stil podnozija stranice*/
+footer {
+    text-align: center;
+    padding: 40px;
+}
+
+footer h3 {
+    color: rgb(0, 102, 204);
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+footer p {
+    font-size: 18px;
+    color: rgb(90, 90, 90);
+}
+
+img {
+    max-width: 100%
+        /*Omogucava da se prilagodi velicina slika stranici*/
+}
+
+h2 {
+    transition: 0.3s;
+}
+
+/*Mijenja boju naslova prelaskom misem*/
+h2:hover {
+    color: rgb(0, 153, 255);
+}
+
+#game-area {
+    width: 100%;
+    height: 200px;
+    background-color: rgb(235, 245, 255);
+    border: 3px solid rgb(0, 102, 204);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+/*Virus object that can be clicked*/
+.virus {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    left: 100px;
+    top: 100px;
+}
+
+/*povecava virus kada mis predje preko njega*/
+.virus:hover {
+    transform: scale(1.2);
 }
