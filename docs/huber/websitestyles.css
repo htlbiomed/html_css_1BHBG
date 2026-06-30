@@ -1,0 +1,63 @@
+
+
+#wrap {
+    width: 600px;
+    margin: 0 auto;
+}
+
+body {
+    background-color: rgb(255, 255, 255);
+    background-image: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgb(241, 115, 237) 100%);
+}
+
+h1 {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(255, 255, 255);
+    background-color: rgb(231, 76, 255);
+    font-weight: bold;
+    font-size: 40px;
+    border-radius: 15px;
+    padding: 15px;
+    margin: 40px;
+}
+
+h2 {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h3 {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+p {
+      font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+hr {
+    background-color: rgb(225, 49, 252);
+    color:rgb(244, 173, 255);
+}
+
+figcaption {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(255, 255, 255);
+    background-color: rgb(243, 165, 255);
+    border-radius: 30px;
+    padding: 10px;
+}
+
+a {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color:rgb(255, 255, 255);
+    font-size: 22px;
+    border: 2px solid rgb(243, 131, 255);
+    border-radius: 30px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+a:hover { /* CSS Effekt */
+    transition: all 1s linear;
+    background-color: rgb(215, 39, 255);
+}

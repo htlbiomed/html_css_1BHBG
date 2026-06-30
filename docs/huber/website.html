@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <title>HTL Tag der offenen Tür</title>
+    <link rel="icon" href="images/favicon.png" type="images/png">
+    <link href="websitestyles.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="wrap">
+      
+        <h1>HTL: Biomedizin & Gesundheitstechnik</h1>
+        <h2>&star; Tag der offenen Tür &star;</h2>
+        <p>Der Tag der offenen Tür steht an und dafür haben wir hier jetzt nochmal einige Infos für Sie.</p>
+        <p>Hier auf dieser Website geben wir Ihnen einen genaueren Einblick in unsere Schule.</p>
+        <figure>
+            <img src="images/Biomed.webp" alt="Hier sollte ein Bild die Biomedizin visualisieren."
+                width="500px">
+            <figcaption>Ein Bild zur Visualisierung der Biomedizin</figcaption>
+        </figure>
+        <hr>
+        <h3>MGIN</h3>
+        <p>Neben einigen anderen Fächern existiert auch das Fach MGIN.</p>
+        <p>Übersetzt heißt das: Medizinische_Geräte_Informatik.</p>
+        <p>Bei diesem Fach handelt es von allerlei Dinge vor dem Rechner.</p>
+        <p>Ob Websiten, Word oder Programmieren, in diesem Fach wird einem nie langweilig.</p>
+        <p>Ja, man lernt sogar ganze Spiele zu programmieren, wie hier unten gezeigt: </p>
+  
+<div id="game-container">
+    <div id="game-instructions">
+        <p><strong>Steuerung:</strong> Drücke die <strong>Leertaste</strong> oder <strong>klicke auf das Spielfeld</strong> zum Springen. ⚠️ Das Spiel wird laufend schneller!</p>
+    </div>
+
+    <div style="position: relative; width: 600px; margin: 0 auto;">
+        <canvas id="gameCanvas" width="600" height="250"></canvas>
+        <div id="game-over-screen">
+            <p id="game-over-text">Spiel vorbei!</p>
+            <p id="game-over-score" style="color: #666; margin-bottom: 15px; font-size: 16px;"></p>
+            <button id="reset-button" onclick="resetGame()">Neu starten</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    #game-container {
+        text-align: center;
+        font-family: Arial, sans-serif;
+        width: 600px;
+        margin: 20px auto;
+    }
+
+    #game-instructions {
+        background-color: rgba(255, 255, 255, 0.85);
+        border: 1px solid #4a0e4e;
+        border-radius: 6px;
+        padding: 8px;
+        margin-bottom: 12px;
+        color: #333333;
+        font-size: 14px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    #game-instructions strong {
+        color: #8a2be2;
+    }
+
+    #gameCanvas {
+        background: linear-gradient(to bottom, #ffffff 0%, #f3e5f5 60%, #e0b0ff 100%);
+        border: 2px solid #4a0e4e;
+        border-radius: 8px;
+        display: block;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(74, 14, 78, 0.2);
+    }
+
+    #game-over-screen {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: rgba(255, 255, 255, 0.98);
+        padding: 25px;
+        border-radius: 12px;
+        border: 2px solid #4a0e4e;
+        z-index: 10;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    #game-over-text {
+        color: #333333;
+        font-size: 26px;
+        font-weight: bold;
+        margin: 0 0 5px 0;
+    }
+
+    #reset-button {
+        background-color: #8a2be2;
+        color: white;
+        border: none;
+        padding: 10px 22px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background 0.2s, transform 0.1s;
+    }
+
+    #reset-button:hover {
+        background-color: #4a0e4e;
+        transform: scale(1.05);
+    }
+</style>
+
+<script>
+    const Game = {
+        canvas: null,
+        ctx: null,
+        gameOverScreen: null,
+        score: 0,
+        isGameOver: false,
+        gameLoopId: null,
+        spawnTimer: 0,
+        obstacles: [],
+        bgElements: [], // Für die verschiedenen Hintergrund-Objekte
+        baseSpeed: 4,    // Startgeschwindigkeit der Viren
+        currentSpeed: 4, // Aktuelle Geschwindigkeit (steigt fortlaufend)
+        
+        player: {
+            x: 60,
+            y: 185,
+            width: 35,
+            height: 45,
+            gravity: 0.6,
+            velocity: 0,
+            jumpStrength: -12,
+            isGrounded: true
+        }
+    };
+
+    window.onload = function() {
+        Game.canvas = document.getElementById("gameCanvas");
+        if (!Game.canvas) return;
+        
+        Game.ctx = Game.canvas.getContext("2d");
+        Game.gameOverScreen = document.getElementById("game-over-screen");
+
+        // Hintergrund-Elemente generieren (Zellen, DNA, Moleküle)
+        initBackground();
+
+        window.addEventListener("keydown", function(e) {
+            if (e.code === "Space") {
+                e.preventDefault();
+                jump();
+            }
+        });
+        Game.canvas.addEventListener("click", jump);
+
+        gameLoop();
+    };
+
+    function initBackground() {
+        Game.bgElements = [];
+        // Typ 1: Runde Zellen, Typ 2: Längliche Stäbchenbakterien, Typ 3: Mini-DNA-Kringel
+        const types = ['cell', 'bacteria', 'dna'];
+        for(let i = 0; i < 12; i++) {
+            Game.bgElements.push({
+                x: Math.random() * Game.canvas.width,
+                y: Math.random() * (Game.canvas.height - 70) + 20,
+                type: types[i % types.length],
+                size: Math.random() * 12 + 6,
+                speed: Math.random() * 0.4 + 0.1, // Unterschiedliche Geschwindigkeiten für Parallaxe
+                alpha: Math.random() * 0.06 + 0.02 // Schön dezent transparent
+            });
+        }
+    }
+
+    function jump() {
+        if (Game.player.isGrounded && !Game.isGameOver) {
+            Game.player.velocity = Game.player.jumpStrength;
+            Game.player.isGrounded = false;
+        }
+    }
+
+    function spawnObstacle() {
+        let size = Math.floor(Math.random() * 15) + 30; 
+        
+        // Frequenz des Spawnens passt sich der Geschwindigkeit an
+        Game.obstacles.push({
+            x: Game.canvas.width,
+            y: Game.canvas.height - size - 20,
+            width: size,
+            height: size,
+            passed: false,
+            wobble: Math.random() * 10
+        });
+    }
+
+    function drawBackground() {
+        let ctx = Game.ctx;
+        
+        Game.bgElements.forEach(el => {
+            // Bewegen
+            if (!Game.isGameOver) {
+                // Hintergrund bewegt sich proportional zur Spielgeschwindigkeit mit
+                el.x -= el.speed * (Game.currentSpeed / 4);
+                if (el.x + el.size * 2 < 0) {
+                    el.x = Game.canvas.width + el.size * 2;
+                    el.y = Math.random() * (Game.canvas.height - 70) + 20;
+                }
+            }
+
+            ctx.save();
+            ctx.fillStyle = `rgba(138, 43, 226, ${el.alpha})`;
+            ctx.strokeStyle = `rgba(74, 14, 78, ${el.alpha})`;
+            ctx.lineWidth = 2;
+
+            if (el.type === 'cell') {
+                // Bio-Zelle mit Kern
+                ctx.beginPath();
+                ctx.arc(el.x, el.y, el.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(el.x - el.size/4, el.y - el.size/4, el.size/3, 0, Math.PI * 2);
+                ctx.fill();
+            } 
+            else if (el.type === 'bacteria') {
+                // Stäbchenbakterie
+                ctx.beginPath();
+                ctx.roundRect(el.x, el.y, el.size * 2, el.size, el.size/2);
+                ctx.fill();
+                ctx.stroke();
+            } 
+            else if (el.type === 'dna') {
+                // Stilisierte kleine Doppelhelix-Schleife
+                ctx.beginPath();
+                ctx.arc(el.x, el.y, el.size, 0, Math.PI, false);
+                ctx.stroke();
+                ctx.beginPath();
+                ctx.arc(el.x + el.size, el.y, el.size, Math.PI, 0, false);
+                ctx.stroke();
+            }
+            ctx.restore();
+        });
+    }
+
+    function drawPlayer() {
+        let ctx = Game.ctx;
+        let p = Game.player;
+        
+        ctx.save();
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = "rgba(0, 0, 0, 0.15)";
+        ctx.shadowOffsetY = 2;
+
+        // Kapsel (Weiß)
+        ctx.fillStyle = "#ffffff";
+        ctx.strokeStyle = "#4a0e4e";
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.roundRect(p.x, p.y, p.width, p.height, 18);
+        ctx.fill();
+        ctx.stroke();
+
+        // Kapsel (Lila Unterseite)
+        ctx.clip();
+        ctx.fillStyle = "#ba55d3";
+        ctx.fillRect(p.x, p.y + p.height/2, p.width, p.height/2);
+        ctx.strokeStyle = "#4a0e4e";
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y + p.height/2);
+        ctx.lineTo(p.x + p.width, p.y + p.height/2);
+        ctx.stroke();
+        ctx.restore();
+
+        // Gesicht
+        ctx.fillStyle = "#333333";
+        ctx.beginPath();
+        ctx.arc(p.x + 11, p.y + 14, 2.5, 0, Math.PI * 2);
+        ctx.arc(p.x + 24, p.y + 14, 2.5, 0, Math.PI * 2);
+        ctx.fill();
+        
+        ctx.fillStyle = "rgba(255, 105, 180, 0.5)";
+        ctx.beginPath();
+        ctx.arc(p.x + 7, p.y + 17, 3, 0, Math.PI * 2);
+        ctx.arc(p.x + 28, p.y + 17, 3, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.strokeStyle = "#333333";
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(p.x + 17.5, p.y + 15, 5, 0.1 * Math.PI, 0.9 * Math.PI);
+        ctx.stroke();
+    }
+
+    function drawObstacles() {
+        let ctx = Game.ctx;
+        Game.obstacles.forEach(obs => {
+            obs.wobble += 0.08;
+            let pulse = Math.sin(obs.wobble) * 2.5;
+
+            let centerX = obs.x + obs.width/2;
+            let centerY = obs.y + obs.height/2;
+            let radius = obs.width/2;
+
+            // Stacheln
+            ctx.strokeStyle = "#4a0e4e";
+            ctx.lineWidth = 3;
+            for (let i = 0; i < 8; i++) {
+                let angle = (i * Math.PI) / 4;
+                let startX = centerX + Math.cos(angle) * radius;
+                let startY = centerY + Math.sin(angle) * radius;
+                let endX = centerX + Math.cos(angle) * (radius + 6 + pulse);
+                let endY = centerY + Math.sin(angle) * (radius + 6 + pulse);
+                
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(endX, endY);
+                ctx.stroke();
+                
+                ctx.fillStyle = "#8a2be2";
+                ctx.beginPath();
+                ctx.arc(endX, endY, 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Körper
+            ctx.fillStyle = "#5c0663";
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = "#4a0e4e";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Gesicht (Wütend/Frech)
+            ctx.fillStyle = "#ffffff";
+            ctx.beginPath();
+            ctx.arc(obs.x + obs.width * 0.35, obs.y + obs.height * 0.42, 4, 0, Math.PI * 2);
+            ctx.arc(obs.x + obs.width * 0.65, obs.y + obs.height * 0.42, 4, 0, Math.PI * 2);
+            ctx.fill();
+            
+            ctx.fillStyle = "#000000";
+            ctx.beginPath();
+            ctx.arc(obs.x + obs.width * 0.39, obs.y + obs.height * 0.44, 1.5, 0, Math.PI * 2);
+            ctx.arc(obs.x + obs.width * 0.61, obs.y + obs.height * 0.44, 1.5, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.strokeStyle = "#ffffff";
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(obs.x + obs.width * 0.25, obs.y + obs.height * 0.3);
+            ctx.lineTo(obs.x + obs.width * 0.42, obs.y + obs.height * 0.38);
+            ctx.moveTo(obs.x + obs.width * 0.75, obs.y + obs.height * 0.3);
+            ctx.lineTo(obs.x + obs.width * 0.58, obs.y + obs.height * 0.38);
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(obs.x + obs.width * 0.32, obs.y + obs.height * 0.68);
+            ctx.lineTo(obs.x + obs.width * 0.5, obs.y + obs.height * 0.58);
+            ctx.lineTo(obs.x + obs.width * 0.68, obs.y + obs.height * 0.68);
+            ctx.stroke();
+        });
+    }
+
+    function update() {
+        if (Game.isGameOver) return;
+
+        // Kontinuierliche Geschwindigkeitssteigerung basierend auf dem Score
+        // Start bei 4, steigt pro Punkt um 0.15 an
+        Game.currentSpeed = Game.baseSpeed + (Game.score * 0.15);
+
+        let p = Game.player;
+        p.velocity += p.gravity;
+        p.y += p.velocity;
+
+        if (p.y >= 185) {
+            p.y = 185;
+            p.velocity = 0;
+            p.isGrounded = true;
+        }
+
+        // Spawn-Rate passt sich dynamisch an, damit Viren bei hohem Tempo nicht ineinander spawnen
+        Game.spawnTimer++;
+        let dynamicSpawnInterval = Math.max(40, 110 - (Game.score * 2.5));
+        if (Game.spawnTimer > dynamicSpawnInterval) {
+            spawnObstacle();
+            Game.spawnTimer = 0;
+        }
+
+        for (let i = Game.obstacles.length - 1; i >= 0; i--) {
+            let obs = Game.obstacles[i];
+            obs.x -= Game.currentSpeed; // Verwendet die dynamische Geschwindigkeit
+
+            if (obs.x + obs.width < p.x && !obs.passed) {
+                Game.score++;
+                obs.passed = true;
+            }
+
+            if (
+                p.x < obs.x + obs.width &&
+                p.x + p.width > obs.x &&
+                p.y < obs.y + obs.height &&
+                p.y + p.height > obs.y
+            ) {
+                gameOver();
+            }
+
+            if (obs.x + obs.width < 0) {
+                Game.obstacles.splice(i, 1);
+            }
+        }
+    }
+
+    function draw() {
+        let ctx = Game.ctx;
+        ctx.clearRect(0, 0, Game.canvas.width, Game.canvas.height);
+
+        drawBackground();
+
+        // Boden
+        ctx.strokeStyle = "#4a0e4e";
+        ctx.lineWidth = 3;
+        ctx.beginPath();
+        ctx.moveTo(0, 230);
+        ctx.lineTo(Game.canvas.width, 230);
+        ctx.stroke();
+
+        drawPlayer();
+        drawObstacles();
+
+        // Score & aktuelle Geschwindigkeit anzeigen
+        ctx.fillStyle = "#333333";
+        ctx.font = "bold 15px Arial";
+        ctx.fillText("Viren abgewehrt: " + Game.score, 20, 30);
+        
+        // Zeigt ein kleines "Tempo-Up"-Indikator-Level an
+        let speedLevel = Math.floor(Game.currentSpeed - Game.baseSpeed);
+        if (speedLevel > 0) {
+            ctx.fillStyle = "#8a2be2";
+            ctx.font = "italic bold 13px Arial";
+            ctx.fillText("Geschwindigkeit: +" + speedLevel, 20, 50);
+        }
+    }
+
+    function gameLoop() {
+        update();
+        draw();
+        if (!Game.isGameOver) {
+            Game.gameLoopId = requestAnimationFrame(gameLoop);
+        }
+    }
+
+    function gameOver() {
+        Game.isGameOver = true;
+        cancelAnimationFrame(Game.gameLoopId);
+        document.getElementById("game-over-score").innerText = "Du hast " + Game.score + " Viren überstanden!";
+        Game.gameOverScreen.style.display = "block";
+    }
+
+    function resetGame() {
+        Game.score = 0;
+        Game.currentSpeed = Game.baseSpeed;
+        Game.isGameOver = false;
+        Game.obstacles = [];
+        Game.spawnTimer = 0;
+        Game.player.y = 185;
+        Game.player.velocity = 0;
+        Game.player.isGrounded = true;
+        Game.gameOverScreen.style.display = "none";
+        initBackground();
+        cancelAnimationFrame(Game.gameLoopId);
+        gameLoop();
+    }
+</script>
+
+        <hr>
+        <p>Also, wie ihr seht ist dieser Zweig sehr spannend.</p>
+        <p>Ich, als Schüler, kann nur sagen, die 5 Jahre werden sich lohnen.</p>
+        <p>Und falls man mal nicht weiter weiß, können aufmunternde Zitate oft helfen.</p>
+        <p>Mein persönliches lieblings Motto/Zitat ist: Auch in dunklen Orten tut sich ein Licht auf. </p>
+        <figure>
+            <img src="images/Schule.jpg" alt="Hier sollte ein Bild der Schule sein"
+                width="500px">
+            <figcaption>Ein aktuelles Bild der Schule</figcaption>
+        </figure>
+        <a href="https://www.htl-salzburg.ac.at/startseite.html" target="_self">Hier gelangen Sie direkt zu unserer Homepage</a>
+    </div>
+</body>
+
+</html>
