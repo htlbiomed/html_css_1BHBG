@@ -1,0 +1,65 @@
+body {
+    background-color: aquamarine;
+    background: radial-gradient(circle, #5ce1d2, #5dbef1);
+    transition: background 1s ease;
+}
+
+h1 {
+    color: rgb(48, 142, 111);
+    text-align: center;
+    font-size: 34px;
+}
+
+h2 {
+    color: rgb(32, 115, 89);
+    text-align: center;
+    font-size: 28px;
+}
+
+p {
+    text-align: center;
+    font-size: 23px;
+}
+
+h3 {
+    color: rgb(30, 97, 75);
+    font-size: 20px;
+}
+
+
+body:hover {
+    background: radial-gradient(circle, #5ce1d2, #5dbef1);
+}
+
+#gameArea {
+    width: 800px;
+    height: 400px;
+    border: 3px solid #0066cc;
+    background-color: #eef8ff;
+    margin: 20px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.virus {
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    border-radius: 50%;
+    position: absolute;
+    cursor: pointer;
+    border: 3px solid darkred;
+}
+
+#startButton {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#startButton:hover {
+    background-color: #004999;
+}
