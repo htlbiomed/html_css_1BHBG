@@ -1,0 +1,199 @@
+/* ==========================================================================
+   ALLGEMEINES STYLING
+   ========================================================================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f7f9;
+    margin: 0;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ==========================================================================
+   DEIN BEREICH (Zentriert, schöne Farben & eingekastelt)
+   ========================================================================== */
+.welcome-card {
+    background-color: #ffffff;
+    max-width: 700px;
+    width: 100%;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06); /* Eleganter, weicher Schatten */
+    border-top: 6px solid #00a896; /* Schöne biomedizinische Akzentfarbe (Teal/Türkis) */
+    text-align: center; /* Zentriert den gesamten Inhalt im Kasten */
+    box-sizing: border-box;
+}
+
+.welcome-card h1 {
+    color: #028090; /* Modernes Medizin-Blau */
+    font-size: 2.5rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.welcome-card h2 {
+    color: #02c39a; /* Frisches Grün/Türkis */
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.welcome-card .intro-text {
+    font-size: 1.1rem;
+    color: #4a5568;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.welcome-card strong {
+    color: #028090;
+}
+
+/* Bild-Ausrüstung im Kasten */
+.welcome-card .image-container {
+    max-width: 100%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Kleiner Schatten fürs Bild */
+    display: inline-block;
+}
+
+.welcome-card img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+
+/* ==========================================================================
+   QUIZ-STYLING (Wissenstest für Biomedizin)
+   ========================================================================== */
+.quiz-section {
+    max-width: 700px;
+    width: 100%;
+    margin-top: 40px;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quiz-section h2 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 1.6rem;
+}
+
+.quiz-intro {
+    text-align: center; 
+    margin-bottom: 30px; 
+    color: #718096;
+}
+
+.quiz-container {
+    width: 100%;
+}
+
+/* Frage-Box */
+.question-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    text-align: left; /* Die Fragen selbst bleiben linksbündig für bessere Lesbarkeit */
+}
+
+.question-text {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 18px;
+    color: #2d3748;
+}
+
+/* Antwort-Optionen */
+.options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Verstecke Radio-Buttons */
+.options input[type="radio"] {
+    display: none;
+}
+
+/* Gestaltete Labels */
+.options label {
+    display: block;
+    padding: 14px 18px;
+    background-color: #f8fafc;
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.options label:hover {
+    background-color: #edf2f7;
+    border-color: #cbd5e0;
+}
+
+/* --- LOGIK-TRICK FÜR REINES CSS-QUIZ --- */
+
+/* Falsche Antwort */
+.options input.wrong:checked + label {
+    background-color: #fff5f5;
+    border-color: #feb2b2;
+    color: #c53030;
+}
+.options input.wrong:checked + label::after {
+    content: " ❌ (Falsch)";
+    font-weight: bold;
+}
+
+/* Richtige Antwort */
+.options input.correct:checked + label {
+    background-color: #f0fff4;
+    border-color: #9ae6b4;
+    color: #22543d;
+}
+.options input.correct:checked + label::after {
+    content: "  (Richtig!)";
+    font-weight: bold;
+}
+
+/* Richtige Antwort automatisch umranden bei Klick */
+.question-card:has(input:checked) input.correct + label {
+    border-color: #38a169;
+    background-color: #f0fff4;
+}
+
+/* Deaktiviert Klicks nach Auswahl */
+.question-card:has(input:checked) label {
+    pointer-events: none;
+}
+
+/* Erklärungstext */
+.explanation {
+    display: none;
+    margin-top: 20px;
+    padding: 12px 15px;
+    background-color: #ebf8ff;
+    border-left: 4px solid #3182ce;
+    font-size: 0.95rem;
+    border-radius: 0 6px 6px 0;
+    color: #2b6cb0;
+    line-height: 1.5;
+}
+
+.question-card:has(input:checked) .explanation {
+    display: block;
+}
