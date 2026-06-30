@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <title>Mein Steckbrief</title>
+        <link rel="icon" type="image/x-icon" href="/Images/Icon_Bio.png">
+        <link href="styles.css" rel="stylesheet">
+    </head>
+
+    <body>
+        <div id="wrap">
+        <h1>Biomedizin- und Gesundheitstechnik</h1>
+        <p>Wilkomm zum Tag der offenen Tür!</p>
+
+        <h2>Hier noch kleine Infomationen zu der Abteilung Biomedizin- und Gesundheitstechnik:</h2>
+
+        <h3>Medizin:</h3>
+        <p>Hier erforschst du die komplexen Prozesse des menschlichen Körpers. Du lernst, wie Anatomie und Physiologie zusammenspielen und wie Krankheiten auf molekularer Ebene entstehen.</p>
+        
+        <h3>Technik:</h3>
+        <p>In der Gesundheitstechnik lernst du, fortschrittliche Technologien zu entwickeln, um die medizinische Versorgung zu verbessern.</p>
+
+        <h2>Hier sind noch ein paar Bilder von der Schule und der Abteilung Biomedizin- und Gesundheitstechnik</h2>
+
+        <figure>
+            <img src="images/bild3-8baaa31b.jpg" width="400px">
+        </figure>
+
+        <figure>
+            <img src="images/links_unten-45e92135.jpg" width="400px">
+        </figure>
+
+        <h2>Hier sind noch Infos zu der HTBLuVA Salzburg:</h2>
+        <p>Gegründet 1876 von Camillo Sitte, werden derzeit 2300 Schülerinnen und Schüler an der größten Schule Westösterreichs ausgebildet.</p>
+
+        <div class="quiz-box">
+    
+        <h1>🩺 Biomed Wahr oder Falsch Quiz</h1>
+
+        <p id="punkte">Punkte: 0</p>
+
+        <div id="frage"></div>
+
+        <button onclick="antwort(true)">✅ Wahr</button>
+        <button onclick="antwort(false)">❌ Falsch</button>
+
+        <p id="ergebnis"></p>
+
+        <br>
+        <button onclick="naechsteFrage()">Nächste Frage</button>
+
+
+        <script src="quiz.js"></script>
+
+        <h1>🩺 Biomed Memory</h1>
+
+        <p>Finde die passenden Paare!</p>
+
+        <div id="spielfeld"></div>
+
+        <div id="status">
+            Züge: <span id="zuege">0</span>
+        </div>
+
+        <script>
+
+        const symbole = [
+            "❤️","❤️",
+            "🫁","🫁",
+            "🧠","🧠",
+            "🦴","🦴",
+            "👁️","👁️",
+            "🦷","🦷",
+            "🩸","🩸",
+            "🩺","🩺"
+        ];
+
+        let karten = symbole.sort(() => Math.random() - 0.5);
+
+        const spielfeld = document.getElementById("spielfeld");
+
+        let ersteKarte = null;
+        let zweiteKarte = null;
+        let sperre = false;
+        let zuege = 0;
+        let gefundenePaare = 0;
+
+        karten.forEach(symbol => {
+
+            const karte = document.createElement("div");
+
+            karte.classList.add("karte");
+            karte.dataset.symbol = symbol;
+            karte.innerHTML = "?";
+
+            karte.addEventListener("click", umdrehen);
+
+            spielfeld.appendChild(karte);
+        });
+
+        function umdrehen() {
+
+            if (
+                sperre ||
+                this.classList.contains("gefunden") ||
+                this === ersteKarte
+            ) return;
+
+            this.innerHTML = this.dataset.symbol;
+            this.classList.add("aufgedeckt");
+
+            if (!ersteKarte) {
+                ersteKarte = this;
+                return;
+            }
+
+            zweiteKarte = this;
+            sperre = true;
+
+            zuege++;
+            document.getElementById("zuege").textContent = zuege;
+
+            if (
+                ersteKarte.dataset.symbol ===
+                zweiteKarte.dataset.symbol
+             ) {
+
+                ersteKarte.classList.add("gefunden");
+                zweiteKarte.classList.add("gefunden");
+
+                gefundenePaare++;
+
+                ersteKarte = null;
+                zweiteKarte = null;
+                sperre = false;
+
+                if (gefundenePaare === 8) {
+                    setTimeout(() => {
+                        alert(
+                            "🎉 Geschafft!\n\n" +
+                            "Du hast alle Paare in " +
+                            zuege +
+                            " Zügen gefunden."
+                        );
+                    }, 300);
+                }
+
+            } else {
+
+                setTimeout(() => {
+
+                    ersteKarte.innerHTML = "?";
+                    zweiteKarte.innerHTML = "?";
+
+                    ersteKarte.classList.remove("aufgedeckt");
+                    zweiteKarte.classList.remove("aufgedeckt");
+
+                    ersteKarte = null;
+                    zweiteKarte = null;
+
+                    sperre = false;
+
+                }, 1000);
+            }
+        }
+
+        </script>
+        </div>
+    </body>
+</html>

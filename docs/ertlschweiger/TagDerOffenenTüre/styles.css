@@ -1,0 +1,32 @@
+#wrap {
+    width: 960px;
+    margin: 0 auto;
+}
+
+body {
+    background-color: rgb(253, 243, 254);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    color: rgb(208, 74, 249);
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-shadow: 2px 2px 5px red;
+}
+
+h2 {
+    color: rgb(114, 190, 238);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h3 {
+    color: rgb(47, 204, 68);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+p {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    font-style: italic; /* kursiv */
+    font-weight: bold;
+}
