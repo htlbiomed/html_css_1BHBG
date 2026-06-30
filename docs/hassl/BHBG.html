@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biomedizin und Gesundheitstechnik | Tag der offenen Tür</title>
+    
+    <link rel="stylesheet" href="stybhbg.css">
+</head>
+<body>
+
+    <header>
+        <h1>Biomedizin und Gesundheitstechnik &#x1FAC0;</h1>
+        <h2>Herzlich Willkommen zum Tag der offenen Tür! &hearts;</h2>
+    </header>
+    <figure>
+        <img src="images/Chemie_2.jpg" alt="Hier soll ein Bild angezeigt werden..." class="center-img" width="700px">
+    </figure>
+
+    <main>
+        <hr>
+        
+        <section class="intro-text">
+            <p>
+                Hier erforschst du die komplexen Prozesse des menschlichen Körpers. 
+                Du lernst, wie Anatomie und Physiologie zusammenspielen und wie Krankheiten 
+                auf molekularer Ebene entstehen. Auf dieser Grundlage verstehst du die 
+                technischen Lösungen und ihre Anwendung im modernen Gesundheitswesen.
+            </p>
+        </section>
+
+        <section class="highlights">
+            <h3>Was dich heute erwartet:</h3>
+            <ul>
+                <li><strong>Spannende Experimente:</strong> Erlebe Medizintechnik in Aktion.</li>
+                <li><strong>Moderne Labore:</strong> Wirf einen Blick hinter die Kulissen.</li>
+                <li><strong>Persönliche Beratung:</strong> Tausch dich mit Lehrkräften und Schülern aus.</li>
+            </ul>
+        </section>
+
+        <section class="game-section">
+            <h3>🎮 Mini-Spiel: Lebensretter</h3>
+            <p>Wähle ein medizinisches Gerät aus und klicke dann auf die Körperstelle, an der es angeschlossen werden muss!</p>
+            
+            <button id="reset-btn">🔄 Spiel neu starten</button>
+            <div id="game-message">Klicke zuerst auf ein Gerät!</div>
+
+            <div class="game-layout">
+                <div class="devices-col">
+                    <h4>Geräte</h4>
+                    <button class="device-btn" id="dev-ekg">💓 EKG-Monitor</button>
+                    <button class="device-btn" id="dev-beatmung">💨 Beatmungsmaschine</button>
+                    <button class="device-btn" id="dev-pulsoxi">🩸 Pulsoximeter</button>
+                </div>
+
+                <div class="patient-col">
+                    <h4>Patient</h4>
+                    <button class="zone-btn" data-target="dev-beatmung">Mund / Atemwege</button>
+                    <button class="zone-btn" data-target="dev-ekg">Brustkorb</button>
+                    <button class="zone-btn" data-target="dev-pulsoxi">Finger</button>
+                </div>
+            </div>
+        </section>
+        </main>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let solvedCount = 0; // Zählt im Hintergrund die korrekten Treffer (Ziel ist 3)
+        let selectedDeviceId = null;
+
+        const deviceButtons = document.querySelectorAll('.device-btn');
+        const zoneButtons = document.querySelectorAll('.zone-btn');
+        const messageDisplay = document.getElementById('game-message');
+        const resetBtn = document.getElementById('reset-btn');
+
+        // Funktion zum Zurücksetzen aller Auswahlen
+        function resetEntireGame() {
+            solvedCount = 0;
+            selectedDeviceId = null;
+            
+            deviceButtons.forEach(btn => {
+                btn.classList.remove('selected', 'solved');
+            });
+
+            zoneButtons.forEach(zone => {
+                zone.classList.remove('solved');
+                zone.innerHTML = zone.innerHTML.replace(" ✅", "");
+            });
+        }
+
+        // Schritt 1: Klick auf ein Gerät
+        deviceButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.classList.contains('solved')) return;
+                deviceButtons.forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                selectedDeviceId = this.id;
+                
+                messageDisplay.innerText = "Wähle nun die passende Körperstelle!";
+                messageDisplay.style.color = "#457b9d";
+            });
+        });
+
+        // Schritt 2: Klick auf eine Körperstelle
+        zoneButtons.forEach(zone => {
+            zone.addEventListener('click', function() {
+                if (!selectedDeviceId) {
+                    messageDisplay.innerText = "Bitte wähle zuerst ein Gerät links aus!";
+                    messageDisplay.style.color = "#e63946";
+                    return;
+                }
+                if (this.classList.contains('solved')) return;
+
+                // Richtige Kombination
+                if (this.getAttribute('data-target') === selectedDeviceId) {
+                    solvedCount++;
+                    
+                    this.classList.add('solved');
+                    this.innerHTML += " ✅";
+                    
+                    const correctDevice = document.getElementById(selectedDeviceId);
+                    if (correctDevice) {
+                        correctDevice.classList.remove('selected');
+                        correctDevice.classList.add('solved');
+                    }
+                    
+                    selectedDeviceId = null;
+
+                    // Prüfen, ob alle 3 gelöst sind
+                    if (solvedCount === 3) {
+                        messageDisplay.innerText = "Klasse! Alle Geräte sind richtig angeschlossen! 🎉";
+                        messageDisplay.style.color = "#28a745";
+                    } else {
+                        messageDisplay.innerText = "Richtig! Mache mit dem nächsten Gerät weiter.";
+                        messageDisplay.style.color = "#28a745";
+                    }
+                } 
+                // Falsche Kombination -> Automatischer Reset
+                else {
+                    resetEntireGame();
+                    messageDisplay.innerText = "Falsch verbunden! Das Spiel wurde zurückgesetzt. Versuch es noch mal!";
+                    messageDisplay.style.color = "#e63946";
+                }
+            });
+        });
+
+        // Manueller Reset-Button
+        resetBtn.addEventListener('click', function() {
+            resetEntireGame();
+            messageDisplay.innerText = "Klicke zuerst auf ein Gerät!";
+            messageDisplay.style.color = "#e63946";
+        });
+    });
+    </script>
+
+</body>
+</html>
