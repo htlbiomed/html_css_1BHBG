@@ -1,47 +1,144 @@
-<!-- Aufbau eines HTML Dokuments -->
-
 <!DOCTYPE html>
-
 <html lang="de">
 
 <head>
-   <meta charset="utf-8">
-   <title>HTL McDonalds</title>
-   <link href="styles.css" rel="stylesheet">
- </head>
+    <meta charset="utf-8">
+    <title>Tag der offenen Tür- HTL Salzburg Biomed!</title>
+    <link href="styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://googleapis.com"> <!-- Improves loading speed for Google resources -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap " rel="stylesheet">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+</head>
 
 <body>
-   <div id="wrap">
-      <h1> Neues HTL Buffet! &hearts; </h1>
-      <p>Wir haben die besten Speisen und Getränke an der ganzer Schule...</p>
+    <div id="wrap">
 
-      <h2>Speisen</h2>
-      <p>Wir bereiten alle Speisen frisch zu...</p>
-      <ul> 
-         <li>Cheesburger</li>
-         <li>Chicken Nuggets</li>
-         <li>Big Mac</li>
-         <li>Pommes</li>
-      </ul>
-      <h2>Getränke</h2>
-      <p>Unsere Getränke sind eisgekühlt!</p>
-      <ol>
-         <li>Coca Cola</li>
-         <li>Milkshake</li>
-         <li>Strawberry Matcha</li>
-         <li>Fanta</li>
-      </ol>
-      <hr>
+        <header>
+            <h1>&#129658; Tag der offenen Tür &#129658;</h1>
+            <p class="subtitle">
+                HTL Salzburg- Biomedizin & Gesundheitstechnik
+            </p>
 
-      <a href="https://www.mcdonalds.at/" target="_self">Hier gehts zum richtigen McDonalds...</a>
+        </header><!--Zaglavlje stranice-->
+        <section class="hero">
 
-      <figure>
-         <img src="images/hamburger.jpg" alt="Hier sollte ein Hamburger gezeichnet werden..." widht="500px">
-         <figcaption>Ein leckerer Hamburger...</figcaption>
-      </figure>
-      <a href="mccafe.html" target="_self">Hier gehts zu unserem McCafe</a>
+            <div class="hero-text"> <!--- prvi veliki dio koji posjetioci stranice vide-->
 
-   </div>
+                <h2>Medizin trifft auf modernste Technik</h2>
+                <p>Entdecke die spannende Welt der Biomedizin und Gesunheitstechnik an der HTL Salzburg.</p>
+                <a href="#biomed">Mehr erfahren</a>
+            </div>
+
+        </section>
+        <section id="schule" class="card"><!--We use section in this case for informations about the school-->
+            <h2>&#127979; Unsere Schule &#127979;</h2>
+            <p>Die HTL Salzburg zählt zu den grösten technischen Schulen Österreichs und bietet moderne Ausbildung in
+                vielen
+                technischen Fachrichtungen.</p>
+            <p>Hier lernen Schülerinnen und Schüler Theorie und Praxis gleichzeitig kennen und arbeiten an innovativen
+                Projekten.</p>
+            <p>
+                Mehr Informationen über die HTL Salzburg finden Sie
+                <a href="https://www.htl-salzburg.ac.at/" target="_blank">hier</a>.
+            </p>
+        </section>
+        <section id="biomed" class="card">
+            <h2>&#128187; &#9877; Warum Biomed? &#9877; &#128187; </h2>
+            <p>Die Abteilung Biomedizin- und Gesundheitstechnik verbindet
+                Medizin, Informatik und moderne Technik.</p>
+            <ul>
+                <li>Biomedizinische Signalverarbeitung</li>
+                <li>Medizin-und Gesundheitsinformatik</li>
+                <li>Medizinische Gerätetechnik</li>
+                <li>Gesundheitswesen und Forschung</li>
+            </ul>
+
+        </section>
+        <section class="gallery">
+            <h2>&#128248; Einblicke in unsere Ausbildung &#128248;</h2>
+            <figure>
+                <img src="images/labor.jpg" alt="Labor">
+                <figcaption>Modernes Labor</figcaption>
+            </figure>
+
+            <figure>
+                <img src="images/mikroskop.jpg" alt="Mikroskop">
+                <figcaption>Arbeiten mit dem Mikroskop</figcaption>
+            </figure>
+            <figure>
+                <img src="images/schule.jpg" alt="HTL Salzburg">
+                <figcaption>HTL Salzburg</figcaption>
+            </figure>
+        </section>
+        <section class="card">
+            <h2>&#128188; Berufsmöglichkeiten &#128188;</h2>
+            <ol>
+                <li>Medizintechnker/in</li>
+                <li>Labor-oder Biotechniker/in</li>
+                <li>Gesundheitsinformatiker/in</li>
+                <li>Datenanalyst/in in der Medizin</li>
+                <li>Projektmanager/in</li>
+            </ol>
+        </section>
+        <section class="card">
+            <h2> &#9200; Programm am Tag der offenen Tür &#9200;</h2>
+            <table>
+
+                <tr>
+                    <th>Uhrzeit</th>
+                    <th>Programm</th>
+                </tr>
+                <tr>
+                    <td>13:30</td>
+                    <td>Begrüßung</td>
+                </tr>
+                <tr>
+                    <td>15:00</td>
+                    <td>Laborbesichtigung</td>
+                </tr>
+                <tr>
+                    <td>16:00</td>
+                    <td>Biomed Vorführung</td>
+                </tr>
+                <tr>
+                    <td>17:00</td>
+                    <td>Fragerunde</td>
+                </tr>
+
+            </table>
+        </section>
+        <footer>
+            <h3> &#10083; Wir freuen uns auf Ihren Besuch! &#10083; </h3>
+            <p>HTL Salzburg &bull; Itzlinger Hauptstraße 30 &bull; Salzburg</p>
+        </footer>
+
+        <section class="card"><!-- We use sction that groups related content into one part of the webpage-->
+            <h2>Catch The Virus</h2>
+            <p>Klicke auf die Viren und sammle Punkte!</p>
+            <h3>Punkte: <span id="score">0</span></h3>
+
+
+            <h3>Zeit: <span id="timer">30</span></h3>
+            <div id="game-area">
+                <div class="virus" onclick="catchVirus(this)">&#129440;</div>
+
+            </div>
+        </section>
+        <section class="card id"="emergency-game">
+
+            <h2>🚑 Emergency Room</h2>
+
+            <p id="task">Patient cannot breathe!</p>
+            <button onclick="checkAnswer('heart')">❤️</button>
+            <button onclick="checkAnswer('lungs')">🫁</button>
+            <button onclick="checkAnswer('brain')">🧠</button>
+
+            <h3>Punkte:<span id="score">0</span></h3>
+
+
+        </section>
+    </div>
+    <script src="script.js"></script>
 </body>
 
 </html>
