@@ -1,0 +1,43 @@
+body {
+    background-color: rgb(250, 190, 200);
+}
+
+#wrap {
+    width: 960px;
+    margin: 0 auto;
+}
+
+h1 {
+    color: rgb(36, 2, 61);
+    text-align: center;
+}
+
+h2 {
+    color: rgb(36, 2, 61);
+    text-align: center;
+}
+
+p {
+    color: rgb(18, 5, 30);
+}
+
+figure {
+    text-align: center;
+}
+
+h3 {
+    color: rgb(36, 2, 61);
+}
+
+a {
+    text-decoration: none;
+    border: 3.5px dotted rgb(122, 24, 24);
+    border-radius: 3px;
+    padding: 4px;
+}
+
+a:hover {
+    transition: all 1.5s linear;
+    background-color: rgb(208, 12, 31);
+    color: rgb(56, 29, 1);
+}
