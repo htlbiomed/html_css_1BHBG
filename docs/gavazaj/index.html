@@ -1,37 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LADENSCHILD — Design für Läden von nebenan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
-    <h1> Neues HTL Buffet!</h1>
-    <p>Wir haben die besten Speisen und Getränke an der ganzen Schule</p>
 
-    <h2>Speisen</h2>
-    <p>Wir bereiten alle Speisen frisch zu...</p>
-    <ul>
-        <li>Cheesburger</li>
-        <li>ChickenNuggets</li>
-        <li>BigMack</li>
-        <li>Pommes</li>
+<header>
+  <nav class="nav">
+    <div class="brand">LADEN<span>SCHILD</span></div>
+    <ul class="nav-links">
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#arbeiten">Arbeiten</a></li>
+      <li><a href="#ablauf">Ablauf</a></li>
+      <li><a href="#ueber">Über uns</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
     </ul>
+    <a href="#kontakt" class="nav-cta">Anfrage stellen</a>
+    <button class="burger" id="burger" aria-label="Menü öffnen"><span></span><span></span><span></span></button>
+  </nav>
+</header>
 
-    <h2>Getränke</h2>
-    <p>Unsere getränke sind eisgekühlt...</p>
-    <ol>
-        <li>Cola</li>
-        <li>MilkShake</li>
-        <li>Strawberrie Matcha</li>
-        <li>Fanta</li>
-    </ol>
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow" data-reveal>Design für Läden von nebenan</div>
+          <h1 data-reveal>Dein Geschäft verdient mehr als <em>ein Provisorium.</em></h1>
+          <p class="lead" data-reveal>Website, Logo, Social Media und Drucksachen — alles aus einer Hand, für kleine Betriebe, die auffallen wollen.</p>
+          <div class="btn-row" data-reveal>
+            <a href="#kontakt" class="btn btn-solid">Projekt anfragen</a>
+            <a href="#leistungen" class="btn btn-outline">Leistungen ansehen</a>
+          </div>
+        </div>
+        <div class="hero-frame" data-reveal>
+          <div class="plus">+</div>
+          <div class="tag">Hauptbild einfügen</div>
+        </div>
+      </div>
+    </div>
+    <div class="strip">
+      <div class="strip-track">
+        <span>Websites</span><span>·</span><span>Logo &amp; Branding</span><span>·</span>
+        <span>Social Media</span><span>·</span><span>Flyer &amp; Plakate</span><span>·</span>
+        <span>Visitenkarten</span><span>·</span><span>Menükarten</span><span>·</span>
+        <span>Website-Feedback</span><span>·</span>
+        <span>Websites</span><span>·</span><span>Logo &amp; Branding</span><span>·</span>
+        <span>Social Media</span><span>·</span><span>Flyer &amp; Plakate</span><span>·</span>
+        <span>Visitenkarten</span><span>·</span><span>Menükarten</span><span>·</span>
+        <span>Website-Feedback</span><span>·</span>
+      </div>
+    </div>
+  </section>
 
+  <!-- LEISTUNGEN -->
+  <section id="leistungen" class="block">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <div>
+          <div class="eyebrow">Leistungen</div>
+          <h2>Eine Karte, alles drauf.</h2>
+        </div>
+      </div>
+      <div class="menu-card" data-reveal>
+        <div class="menu-cols">
+          <div class="menu-cat">
+            <h3>Web</h3>
+            <div class="menu-item"><div class="top-row"><span class="name">Website</span><span class="dots"></span><span class="price">ab €150</span></div><span class="desc">bis 5 Seiten</span></div>
+            <div class="menu-item"><div class="top-row"><span class="name">Landingpage</span><span class="dots"></span><span class="price">ab €60</span></div><span class="desc">eine Seite, ein Angebot</span></div>
+            <div class="menu-item"><div class="top-row"><span class="name">Feedback</span><span class="dots"></span><span class="price">ab €20</span></div><span class="desc">Check + Verbesserungsliste</span></div>
+          </div>
+          <div class="menu-cat">
+            <h3>Branding</h3>
+            <div class="menu-item"><div class="top-row"><span class="name">Logo</span><span class="dots"></span><span class="price">ab €30</span></div><span class="desc">3 Entwürfe, 2 Runden</span></div>
+            <div class="menu-item"><div class="top-row"><span class="name">Branding-Paket</span><span class="dots"></span><span class="price">ab €70</span></div><span class="desc">Logo, Farben, Schrift</span></div>
+          </div>
+          <div class="menu-cat">
+            <h3>Social Media</h3>
+            <div class="menu-item"><div class="top-row"><span class="name">Grafik-Set</span><span class="dots"></span><span class="price">ab €20</span></div><span class="desc">Vorlagen fürs Feed</span></div>
+            <div class="menu-item"><div class="top-row"><span class="name">Betreuung</span><span class="dots"></span><span class="price">ab €40/Mon.</span></div><span class="desc">laufend, monatlich</span></div>
+            <div class="menu-item"><div class="top-row"><span class="name">Werbeanzeige</span><span class="dots"></span><span class="price">ab €15</span></div><span class="desc">für Ads</span></div>
+          </div>
+          <div class="menu-cat">
+            <h3>Print</h3>
+            <div class="menu-item"><div class="top-row"><span class="name">Flyer/Plakat</span><span class="dots"></span><span class="price">ab €20</span></div><span class="desc">druckfertig</span></div>
+            <div class="menu-item"><div class="top-row"><span class="name">Visitenkarte</span><span class="dots"></span><span class="price">ab €15</span></div><span class="desc">Vorder- &amp; Rückseite</span></div>
+            <div class="menu-item"><div class="top-row"><span class="name">Menükarte</span><span class="dots"></span><span class="price">ab €25</span></div><span class="desc">für Cafés</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ARBEITEN -->
+  <section id="arbeiten" class="block">
+    <div class="wrap">
+      <div class="section-head" data-reveal><div><div class="eyebrow">Arbeiten</div><h2>Ausgewählte Projekte.</h2></div></div>
+      <div class="grid-work">
+        <div class="work-frame" data-reveal><div class="plus">+</div><div class="cat">Website</div></div>
+        <div class="work-frame" data-reveal><div class="plus">+</div><div class="cat">Logo</div></div>
+        <div class="work-frame" data-reveal><div class="plus">+</div><div class="cat">Flyer</div></div>
+        <div class="work-frame" data-reveal><div class="plus">+</div><div class="cat">Social Media</div></div>
+      </div>
+    </div>
+  </section>
 
+  <!-- ABLAUF -->
+  <section id="ablauf" class="block">
+    <div class="wrap">
+      <div class="section-head" data-reveal><div><div class="eyebrow">Ablauf</div><h2>So läuft ein Projekt.</h2></div></div>
+      <div class="process-row">
+        <div class="process-step" data-reveal><div class="num">01</div><h3>Anfrage</h3><p>Kurz schreiben, worum es geht. Kostenlos & unverbindlich.</p></div>
+        <div class="process-step" data-reveal><div class="num">02</div><h3>Angebot</h3><p>Klarer Preis, klarer Zeitrahmen.</p></div>
+        <div class="process-step" data-reveal><div class="num">03</div><h3>Entwurf</h3><p>Feedback geben, ich passe an.</p></div>
+        <div class="process-step" data-reveal><div class="num">04</div><h3>Übergabe</h3><p>Alle Dateien fertig zum Nutzen.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ÜBER UNS -->
+  <section id="ueber" class="block">
+    <div class="wrap">
+      <div class="section-head" data-reveal><div><div class="eyebrow">Über uns</div><h2>Ein junges Team mit Technik im Rücken.</h2></div></div>
+      <div class="menu-cols" style="grid-template-columns:1fr; gap:14px;">
+        <div data-reveal>
+          <p style="font-size:0.98rem; color:var(--ink-soft); margin-bottom:14px; max-width:640px;">
+            Wir sind ein junges Team von der HTL Salzburg. Technik, Programme und sauberes Arbeiten gehören bei uns zum Schulalltag — und genau dieses Handwerk stecken wir in jede Website, jedes Logo und jedes Plakat.
+          </p>
+          <p style="font-size:0.98rem; color:var(--ink-soft); max-width:640px;">
+            Kein Agentur-Aufschlag, keine langen Wartezeiten. Dafür ein direkter Draht zu uns, faire Preise und Leute, die mit frischem Blick an dein Projekt herangehen.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="block">
+    <div class="wrap">
+      <div class="contact-card" data-reveal>
+        <div>
+          <div class="eyebrow" style="color:var(--amber-soft);">Kontakt</div>
+          <h2>Lass uns dein Geschäft sichtbar machen.</h2>
+          <p>Egal ob Website, Logo oder ein Plakat für die Eröffnung — schreib mir kurz, worum es geht. Ich melde mich innerhalb von 1–2 Tagen.</p>
+        </div>
+        <div>
+          <!--
+            WICHTIG: Trag hier deine eigene Formspree-ID ein.
+            1. Kostenlos registrieren auf https://formspree.io
+            2. Neues Formular anlegen -> du bekommst eine ID wie "xzbqlwae"
+            3. Unten "DEINE-ID" durch diese ID ersetzen
+          -->
+          <form id="contact-form" action="https://formspree.io/f/DEINE-ID" method="POST">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="field">
+              <label for="email">E-Mail</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="field">
+              <label for="message">Nachricht</label>
+              <textarea id="message" name="message" placeholder="Was brauchst du? Website, Logo, Flyer..." required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Anfrage senden</button>
+            <div class="form-note">Oder direkt per Mail: <a href="mailto:Hadi.gavazaj11@htl-salzburg.ac.at" style="color:var(--amber-soft);">Hadi.gavazaj11@htl-salzburg.ac.at</a></div>
+            <div class="form-status" id="form-status"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot-row">
+    <div class="brand" style="font-size:0.95rem;">LADEN<span>SCHILD</span></div>
+    <div class="eyebrow">Design für kleine Betriebe · Salzburg</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
-
 </html>
-<a href="https://www.mcdonalds.at/unsere-produkte" target="_blank">
-
-    <figure>
-        <img src="img/OIP.webp" alt="Hier sollte ein Hamburger gezeigt werden.... ">
-        <figcaption </figure>
-
-
-            </body>
-
-            </html>
